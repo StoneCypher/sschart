@@ -1,0 +1,16 @@
+{
+  "name": "sschart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "d3": "^3.5.12",
+    "express": "^4.13.3",
+    "jsdom": "^7.2.2"
+  }
+}
