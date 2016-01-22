@@ -12,29 +12,23 @@ var fs    = require('fs'),
 module.exports = function(opts, callback) {
 
     var kinds = { 'pie': pie },
-        kind  = kinds[opts.kind] || pie;
+        kind  = kinds[opts.kind] || pie;  // todo: should the default be an error instead?
 
-	jsdom.env({
+  jsdom.env({
 
-	    html     : '',
-	    features : { QuerySelector:true },
+    html     : '',
+    features : { QuerySelector:true },
 
-	    done: function(errors, window) {
-	    	window.d3  = d3.select(window.document); // get d3 into the dom
-            callback( kind.drawInto(d3, window, { data: opts.data || kind.defaults.data }) );
-	    }
+    done: function(errors, window) {
 
-	});
-}
+      window.d3 = d3.select(window.document); // get d3 into the dom
 
+      callback(
+        kind.drawInto(d3, window, { data: opts.data || kind.defaults.data })
+      );
 
+    }
 
-
-
-if (require.main === module) {
-
-	module.exports([1,2,4], function(result) {
-        fs.writeFileSync('chart.svg', result);
-	});
+  });
 
 }
